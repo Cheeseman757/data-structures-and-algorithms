@@ -28,7 +28,10 @@ Prove that the original people array is unchanged
 ------------------------------------------------------------------------------------------------ */
 
 const addPeople = (arr) => {
-  // Solution code here...
+  const newArray = [...arr];
+  newArray.unshift({ name: 'Odie' });
+  newArray.push({ name: 'Garfield' });
+  return newArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -45,7 +48,8 @@ Ensure that the original people array and stuff objects are unchanged
 ------------------------------------------------------------------------------------------------ */
 
 const setState = (arr, obj) => {
-  // Solution code here...
+  people: [...arr],
+  stuff: { ...obj },
 };
 
 
@@ -66,7 +70,10 @@ Ensure that the original people array and stuff objects are unchanged
 ------------------------------------------------------------------------------------------------ */
 
 const newState = (arr, obj) => {
-  // Solution code here...
+  people: [arr],
+  stuff: { obj, cars: [obj.cars, 'Ford'] },
+  toys: obj.toys + 1,
+  hygiene: { obj.hygiene, toothbrush: 'brand new' },
 };
 
 
