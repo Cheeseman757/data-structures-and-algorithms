@@ -9,6 +9,7 @@ Write a function named returnTen, takes in a string and uses split and splice to
 
 function returnTen(str){
   // Solution code here...
+  return str.split('').splice(-10).join('').split('');
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -27,8 +28,8 @@ return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
   // Solution code here...
+  return Math.max(...matrix.map(row => Math.max(...row)));
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -45,6 +46,7 @@ return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
   // Solution code here...
+  return matrix.reduce((total, row) => total + row.reduce((rowTotal, num) => rowTotal + num, 0), 0);
 };
 
 
@@ -72,9 +74,16 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
-
+  let totalPerHour = [];
+  for (let hour = 0; hour < hoursOpen.length; hour++) {
+    let hourTotal = 0;
+    for (let store = 0; store < stores.length; store++) {
+      hourTotal += stores[store][hour];
+    }
+    totalPerHour.push(hourTotal);
+  }
+  return totalPerHour;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
@@ -87,14 +96,17 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  let formattedSalesData = [];
+  hours.forEach((hour, index) => {
+    formattedSalesData.push({ sales: `${data[index]} cookies`, time: hour });
+  });
+  return formattedSalesData;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
 Write a function named howManyTreats that will return the quantity of treats you need to pick up from the pet store today from this array. The structure of the array will not change.
 ------------------------------------------------------------------------------------------------ */
-
 const errands = [
   {
     store: 'Grocery store',
@@ -112,7 +124,11 @@ const errands = [
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  const petStore = arr.find(store => store.store === 'Pet store');
+  const treats = petStore.items.find(item => item.name === 'Treats');
+  return treats.quantity;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
